@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Exp4_Server">
+    <output-path>$PROJECT_DIR$/out/artifacts/Exp4_Server</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Exp4_Server/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Exp4_Server" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/jstl-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/druid-1.1.10.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/standard-1.1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/fastjson-1.2.74.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/javax.servlet-api-3.1.0.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../Exp2/web/WEB-INF/lib/mysql-connector-java-5.0.5-bin.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
