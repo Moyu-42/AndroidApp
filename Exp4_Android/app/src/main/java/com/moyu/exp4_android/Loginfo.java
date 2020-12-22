@@ -1,7 +1,9 @@
 package com.moyu.exp4_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -81,6 +83,58 @@ public class Loginfo extends Activity {
         };
         request.setTag(tag);
         requestQueue.add(request);
+    }
+    public void delete(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Loginfo.this);
+        builder.setTitle("确认要删除？该操作不可逆");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String url = "http://49.234.84.130:8080/Exp4/deleteServlet";
+                String tag = "Delete";
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                requestQueue.cancelAll(tag);
+                final StringRequest request = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = (JSONObject) new JSONObject(response);
+                                    String result = jsonObject.getString("Result");
+                                    System.out.println(result);
+                                    Toast.makeText(Loginfo.this, result, Toast.LENGTH_SHORT).show();
+                                    if (result.equals("注销成功!")) {
+                                        Intent intent = new Intent(Loginfo.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("username", username);
+                        return params;
+                    }
+                };
+                request.setTag(tag);
+                requestQueue.add(request);
+            }
+        });
+        builder.show();
     }
     public void logout(View view) {
         Intent intent = new Intent(Loginfo.this, MainActivity.class);

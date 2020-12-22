@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
 import android.view.KeyEvent;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class Register extends Activity {
     String username, passwd, name, age, teleno, passwd_confirm;
     EditText username_et, passwd_et, name_et, age_et, teleno_et, passwd_confirm_et;
+    boolean check = false, confirm_check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,5 +125,23 @@ public class Register extends Activity {
         Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+    public void register_trans(View view) {
+        if (check) {
+            check = false;
+            passwd_et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }else {
+            check = true;
+            passwd_et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+    }
+    public void register_confirm_trans(View view) {
+        if (confirm_check) {
+            confirm_check = false;
+            passwd_confirm_et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }else {
+            confirm_check = true;
+            passwd_confirm_et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
     }
 }

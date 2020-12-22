@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
 import android.view.KeyEvent;
@@ -31,6 +32,7 @@ public class ChangePassword extends Activity {
     String username, passwd, passwd_confirm;
     TextView username_tv;
     EditText passwd_et, passwd_confirm_et;
+    boolean check = false, confirm_check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,5 +105,23 @@ public class ChangePassword extends Activity {
         intent.putExtras(bundle);
         startActivity(intent);
         finish();
+    }
+    public void change_trans(View view) {
+        if (check) {
+            check = false;
+            passwd_et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }else {
+            check = true;
+            passwd_et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
+    }
+    public void change_confirm_trans(View view) {
+        if (confirm_check) {
+            confirm_check = false;
+            passwd_confirm_et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }else {
+            confirm_check = true;
+            passwd_confirm_et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
     }
 }

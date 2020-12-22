@@ -1,7 +1,9 @@
 package com.moyu.exp4_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public class Modify extends Activity {
     String username, name, age, teleno, origin_name;
     EditText name_et, age_et, teleno_et;
     TextView username_vt;
+    boolean age_bool = false, teleno_bool = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,20 +54,26 @@ public class Modify extends Activity {
     public void submit_modify(View view) {
         name = name_et.getText().toString();
         age = age_et.getText().toString();
+        if (age.isEmpty() && !age_bool) {
+            age = "-1";
+        }
         Integer age_;
         if (!age.isEmpty())
             age_ = Integer.parseInt(age);
         else age_ = null;
         teleno = teleno_et.getText().toString();
+        if (teleno.isEmpty() && !teleno_bool) {
+            teleno = "-1";
+        }
 
         if (name.isEmpty() && age.isEmpty() && teleno.isEmpty()) {
             Toast.makeText(Modify.this, "至少填入一项信息!", Toast.LENGTH_SHORT).show();
         }
         else if (!name.isEmpty() && name.length() > 20) {
             Toast.makeText(Modify.this, "Name不能超过20", Toast.LENGTH_SHORT).show();
-        }else if (!teleno.isEmpty() && teleno.length() != 11) {
+        }else if (!teleno.isEmpty() && teleno.length() != 11 && !teleno.equals("-1")) {
             Toast.makeText(Modify.this, "Teleno只能为11位", Toast.LENGTH_SHORT).show();
-        }else if (!age.isEmpty() && (age_ < 0 || age_ > 800)) {
+        }else if (!age.isEmpty() && (age_ < 0 || age_ > 800) && (age_ != -1)) {
             Toast.makeText(Modify.this, "Age只能在0~800之内", Toast.LENGTH_SHORT).show();
         }else {
             modifyRequest(username, name, origin_name, age, teleno);
@@ -123,5 +132,23 @@ public class Modify extends Activity {
         intent.putExtras(bundle);
         startActivity(intent);
         finish();
+    }
+    public void age_change(View view) {
+        if (age_bool) {
+            age_bool = false;
+            Toast.makeText(Modify.this, "若age为空，则不会修改age", Toast.LENGTH_SHORT).show();
+        }else {
+            age_bool = true;
+            Toast.makeText(Modify.this, "若age为空，则会修改age", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void teleno_change(View view) {
+        if (teleno_bool) {
+            teleno_bool = false;
+            Toast.makeText(Modify.this, "若teleno为空，则不会修改teleno", Toast.LENGTH_SHORT).show();
+        }else {
+            teleno_bool = true;
+            Toast.makeText(Modify.this, "若teleno为空，则会修改teleno", Toast.LENGTH_SHORT).show();
+        }
     }
 }

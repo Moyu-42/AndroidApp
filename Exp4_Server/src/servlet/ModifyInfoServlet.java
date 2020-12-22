@@ -40,6 +40,7 @@ public class ModifyInfoServlet extends HttpServlet {
             String name = req.getParameter("name").trim();
             String age_ = req.getParameter("age").trim();
             String teleno = req.getParameter("teleno").trim();
+            // 用于网页端的pp
             Person pp = new Person();
 
             if (sc.getAttribute("person") == null) {
@@ -61,6 +62,7 @@ public class ModifyInfoServlet extends HttpServlet {
 
             PersonService personService = new PersonService(db);
             UserService userService = new UserService(db);
+            // 新的要插入的person
             Person person = new Person(username, name, age, teleno);
 
             JSONObject jsonObject = new JSONObject();
@@ -73,7 +75,20 @@ public class ModifyInfoServlet extends HttpServlet {
                 // 读出username对应的信息
                 Person person_origin = new Person();
                 person_origin.setUsername(username);
-                person_origin.setName(origin_name);
+                List<Person> personList = personService.getQuery();
+                for (Person p: personList) {
+                    if (p.getUsername().equals(person_origin.getUsername())) {
+                        person_origin = p;
+                        break;
+                    }
+                }
+                // 看age和teleno是否需要更改
+                if (age_.equals("-1")) {
+                    person.setAge(person_origin.getAge());
+                }
+                if (teleno.equals("-1")) {
+                    person.setTeleno(person_origin.getTeleno());
+                }
                 // name相同，直接insert
                 if (person_origin.getName().equals(person.getName())) {
                     personService.addPerson(person);

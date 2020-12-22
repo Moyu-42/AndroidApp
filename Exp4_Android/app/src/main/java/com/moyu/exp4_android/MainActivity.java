@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
     String username, passwd;
     EditText username_et, passwd_et;
     private long exitTime = 0;
+    boolean check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,11 +114,18 @@ public class MainActivity extends Activity {
     public void register(View view) {
         Intent intent = new Intent(MainActivity.this, Register.class);
         startActivity(intent);
-        finish();
     }
     public void forget_password(View view) {
         Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
         startActivity(intent);
-        finish();
+    }
+    public void trans(View view) {
+        if (check) {
+            check = false;
+            passwd_et.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }else {
+            check = true;
+            passwd_et.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }
     }
 }

@@ -71,5 +71,6 @@
               onclick="window.location.href='./forget.jsp'">Forget Password</button>
     </div>
   </div>
+  <center><a href="/Exp4/downloadServlet">下载app</a></center>
   </body>
 </html>
