@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class MainActivity extends Activity {
     String username, passwd;
     EditText username_et, passwd_et;
+    private long exitTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,12 +94,28 @@ public class MainActivity extends Activity {
         request.setTag(tag);
         requestQueue.add(request);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     public void register(View view) {
         Intent intent = new Intent(MainActivity.this, Register.class);
         startActivity(intent);
+        finish();
     }
     public void forget_password(View view) {
         Intent intent = new Intent(MainActivity.this, ForgetPassword.class);
         startActivity(intent);
+        finish();
     }
 }

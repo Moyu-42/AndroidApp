@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -72,6 +73,7 @@ public class ChangePassword extends Activity {
                                 bundle.putString("username", username);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,5 +102,6 @@ public class ChangePassword extends Activity {
         bundle.putString("username", username);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 }

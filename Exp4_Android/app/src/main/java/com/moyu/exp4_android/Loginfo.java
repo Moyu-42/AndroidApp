@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -81,10 +82,10 @@ public class Loginfo extends Activity {
         request.setTag(tag);
         requestQueue.add(request);
     }
-    
     public void logout(View view) {
         Intent intent = new Intent(Loginfo.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
     public void changepassword(View view) {
         Intent intent = new Intent(Loginfo.this, ChangePassword.class);
@@ -92,6 +93,7 @@ public class Loginfo extends Activity {
         bundle.putString("username", username);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
     public void modify(View view) {
         Intent intent = new Intent(Loginfo.this, Modify.class);
@@ -100,5 +102,6 @@ public class Loginfo extends Activity {
         bundle.putString("origin_name", name);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 }

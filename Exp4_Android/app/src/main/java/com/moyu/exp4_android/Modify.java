@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -89,6 +90,7 @@ public class Modify extends Activity {
                                 bundle.putString("username", username);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,5 +122,6 @@ public class Modify extends Activity {
         bundle.putString("username", username);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 }

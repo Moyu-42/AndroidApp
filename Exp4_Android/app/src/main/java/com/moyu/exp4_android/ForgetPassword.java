@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class ForgetPassword extends Activity {
                             if (result.equals("修改成功!")) {
                                 Intent intent = new Intent(ForgetPassword.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -93,5 +95,6 @@ public class ForgetPassword extends Activity {
     public void cancel_forget(View view) {
         Intent intent = new Intent(ForgetPassword.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

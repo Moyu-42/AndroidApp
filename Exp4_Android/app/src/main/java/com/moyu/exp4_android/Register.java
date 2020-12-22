@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -92,6 +93,7 @@ public class Register extends Activity {
                             if (result.equals("注册成功!")) {
                                 Intent intent = new Intent(Register.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,5 +122,6 @@ public class Register extends Activity {
     public void cancel_register(View view) {
         Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }
