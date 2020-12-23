@@ -28,10 +28,14 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="js/login_info.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
     <c:set var="person" value="${person}"/>
+    <script type="text/javascript">
+        var username = "${person.username}";
+    </script>
     <center><h5>Login User: ${person.username}</h5></center><br>
     <center><h4>Hello ${person.name}!</h4></center><br>
     <center><h4>Your Info:</h4></center><br>
@@ -50,6 +54,9 @@
     <div class="form-group" align="center">
         <button type="submit" class="btn btn-default" id="btn-edit" name="btn-edit"
                 onclick="window.location.href='./modify.jsp'">Edit Info</button>
+    </div>
+    <div class="form-group" align="center">
+        <button type="submit" class="btn btn-default" id="btn-delete" name="btn-delete">Delete User</button>
     </div>
 </div>
 </body>

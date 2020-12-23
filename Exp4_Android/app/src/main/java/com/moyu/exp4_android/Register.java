@@ -63,13 +63,13 @@ public class Register extends Activity {
         }else if (name.isEmpty()) {
             Toast.makeText(Register.this, "请输入昵称", Toast.LENGTH_SHORT).show();
         }else if (!username.isEmpty() && username.length() > 10) {
-            Toast.makeText(Register.this, "Username不能超过10", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "Username不能超过10位", Toast.LENGTH_SHORT).show();
         }else if (!passwd.isEmpty() && passwd.length() > 8) {
-            Toast.makeText(Register.this, "Password不能超过8", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "Password不能超过8位", Toast.LENGTH_SHORT).show();
         }else if (!passwd.equals(passwd_confirm)) {
             Toast.makeText(Register.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }else if (!name.isEmpty() && name.length() > 20) {
-            Toast.makeText(Register.this, "Name不能超过20", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "Name不能超过20位", Toast.LENGTH_SHORT).show();
         }else if (!teleno.isEmpty() && teleno.length() != 11) {
             Toast.makeText(Register.this, "Teleno只能为11位", Toast.LENGTH_SHORT).show();
         }else if (!age.isEmpty() && (age_ < 0 || age_ > 800)) {

@@ -49,6 +49,8 @@ public class ChangePassword extends Activity {
         passwd_confirm = passwd_confirm_et.getText().toString();
         if (passwd.isEmpty()) {
             Toast.makeText(ChangePassword.this, "请输入密码", Toast.LENGTH_SHORT).show();
+        }else if (!passwd.isEmpty() && passwd.length() > 8) {
+            Toast.makeText(ChangePassword.this, "密码最多8位", Toast.LENGTH_SHORT).show();
         }else if (!passwd.equals(passwd_confirm)) {
             Toast.makeText(ChangePassword.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }else {

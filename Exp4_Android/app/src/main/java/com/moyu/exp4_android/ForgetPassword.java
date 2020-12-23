@@ -46,6 +46,8 @@ public class ForgetPassword extends Activity {
         passwd_confirm = passwd_confirm_et.getText().toString();
         if (username.isEmpty()) {
             Toast.makeText(ForgetPassword.this, "请输入用户名", Toast.LENGTH_SHORT).show();
+        }else if (!passwd.isEmpty() && passwd.length() > 8) {
+            Toast.makeText(ForgetPassword.this, "密码最多8位", Toast.LENGTH_SHORT).show();
         }else if (passwd.isEmpty()) {
             Toast.makeText(ForgetPassword.this, "请输入密码", Toast.LENGTH_SHORT).show();
         }else if (!passwd.equals(passwd_confirm)) {
