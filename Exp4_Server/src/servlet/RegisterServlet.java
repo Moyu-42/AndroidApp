@@ -1,6 +1,7 @@
 package servlet;
 
 import bean.Database;
+import bean.MD5;
 import bean.Person;
 import bean.User;
 import com.alibaba.fastjson.JSONObject;
@@ -34,6 +35,8 @@ public class RegisterServlet extends HttpServlet {
         try(PrintWriter out = resp.getWriter()) {
             String username = req.getParameter("username").trim();
             String passwd = req.getParameter("password").trim();
+            MD5 md5 = new MD5();
+            passwd = md5.stringToMD5(passwd);
             String name = req.getParameter("name").trim();
             String age_ = req.getParameter("age").trim();
             String teleno = req.getParameter("teleno").trim();

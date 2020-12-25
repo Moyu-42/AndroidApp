@@ -80,50 +80,63 @@ public class Modify extends Activity {
         }
     }
     public void modifyRequest(final String username, final String name, final String origin_name, final String age, final String teleno) {
-        String url = "http://49.234.84.130:8080/Exp4/modifyInfoServlet";
-        String tag = "Modify";
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.cancelAll(tag);
-        final StringRequest request = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = (JSONObject) new JSONObject(response);
-                            String result = jsonObject.getString("Result");
-                            System.out.println(result);
-                            Toast.makeText(Modify.this, result, Toast.LENGTH_SHORT).show();
-                            if (result.equals("修改信息成功!")) {
-                                Intent intent = new Intent(Modify.this, Loginfo.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putString("username", username);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                                finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(Modify.this);
+        builder.setTitle("确认要修改信息？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String url = "http://49.234.84.130:8080/Exp4/modifyInfoServlet";
+                String tag = "Modify";
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                requestQueue.cancelAll(tag);
+                final StringRequest request = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = (JSONObject) new JSONObject(response);
+                                    String result = jsonObject.getString("Result");
+                                    System.out.println(result);
+                                    Toast.makeText(Modify.this, result, Toast.LENGTH_SHORT).show();
+                                    if (result.equals("修改信息成功!")) {
+                                        Intent intent = new Intent(Modify.this, Loginfo.class);
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("username", username);
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("username", username);
+                        params.put("name", name);
+                        params.put("origin_name", origin_name);
+                        params.put("age", age);
+                        params.put("teleno", teleno);
+                        return params;
+                    }
+                };
+                request.setTag(tag);
+                requestQueue.add(request);
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("name", name);
-                params.put("origin_name", origin_name);
-                params.put("age", age);
-                params.put("teleno", teleno);
-                return params;
-            }
-        };
-        request.setTag(tag);
-        requestQueue.add(request);
+        });
+        builder.show();
     }
     public void cancel_modify(View view) {
         Intent intent = new Intent(Modify.this, Loginfo.class);

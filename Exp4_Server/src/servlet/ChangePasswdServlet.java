@@ -1,6 +1,7 @@
 package servlet;
 
 import bean.Database;
+import bean.MD5;
 import bean.Person;
 import bean.User;
 import com.alibaba.fastjson.JSONObject;
@@ -33,6 +34,8 @@ public class ChangePasswdServlet extends HttpServlet {
         try(PrintWriter out = resp.getWriter()) {
             String username = req.getParameter("username").trim();
             String passwd = req.getParameter("password").trim();
+            MD5 md5 = new MD5();
+            passwd = md5.stringToMD5(passwd);
             if (username.isEmpty()) {
                 Person pp = (Person)sc.getAttribute("person");
                 username = pp.getUsername();

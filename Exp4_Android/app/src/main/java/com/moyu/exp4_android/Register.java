@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Register extends Activity {
     String username, passwd, name, age, teleno, passwd_confirm;
@@ -56,6 +57,10 @@ public class Register extends Activity {
         else age_ = null;
         teleno = teleno_et.getText().toString();
         passwd_confirm = passwd_confirm_et.getText().toString();
+
+        String username_reg = "[a-zA-Z\\d_]*";
+        String password_reg = "[a-zA-Z\\d_]*";
+
         if (username.isEmpty()) {
             Toast.makeText(Register.this, "请输入用户名", Toast.LENGTH_SHORT).show();
         }else if (passwd.isEmpty()) {
@@ -63,17 +68,21 @@ public class Register extends Activity {
         }else if (name.isEmpty()) {
             Toast.makeText(Register.this, "请输入昵称", Toast.LENGTH_SHORT).show();
         }else if (!username.isEmpty() && username.length() > 10) {
-            Toast.makeText(Register.this, "Username不能超过10位", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "用户名不能超过10位", Toast.LENGTH_SHORT).show();
+        }else if (!username.isEmpty() && !Pattern.matches(username_reg, username)){
+            Toast.makeText(Register.this, "用户名只能包含大小写字母,数字,以及\\和_", Toast.LENGTH_SHORT).show();
+        }else if (!passwd.isEmpty() && !Pattern.matches(password_reg, passwd)) {
+            Toast.makeText(Register.this, "密码只能包含大小写字母,数字,以及\\和_", Toast.LENGTH_SHORT).show();
         }else if (!passwd.isEmpty() && passwd.length() > 8) {
-            Toast.makeText(Register.this, "Password不能超过8位", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "密码不能超过8位", Toast.LENGTH_SHORT).show();
         }else if (!passwd.equals(passwd_confirm)) {
             Toast.makeText(Register.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }else if (!name.isEmpty() && name.length() > 20) {
-            Toast.makeText(Register.this, "Name不能超过20位", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "昵称不能超过20位", Toast.LENGTH_SHORT).show();
         }else if (!teleno.isEmpty() && teleno.length() != 11) {
-            Toast.makeText(Register.this, "Teleno只能为11位", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "电话号码只能为11位", Toast.LENGTH_SHORT).show();
         }else if (!age.isEmpty() && (age_ < 0 || age_ > 800)) {
-            Toast.makeText(Register.this, "Age只能在0~800之内", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "年龄只能在0~800之内", Toast.LENGTH_SHORT).show();
         }else {
             registerRequest(username, passwd, name, age, teleno);
         }

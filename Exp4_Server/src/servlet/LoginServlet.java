@@ -1,6 +1,7 @@
 package servlet;
 
 import bean.Database;
+import bean.MD5;
 import bean.User;
 import com.alibaba.fastjson.JSONObject;
 import service.UserService;
@@ -32,7 +33,9 @@ public class LoginServlet extends HttpServlet {
         try(PrintWriter out = resp.getWriter()) {
             String username = req.getParameter("username").trim();
             String passwd = req.getParameter("password").trim();
-
+            MD5 md5 = new MD5();
+            passwd = md5.stringToMD5(passwd);
+            
             UserService userService = new UserService(db);
             User user = new User(username, passwd);
 
