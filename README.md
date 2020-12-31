@@ -81,7 +81,7 @@ Apache Tomcat/9.0.39
     ├─src
     │  ├─bean
     │  │  	├─Database.java
-    │  │  	├─MD5.java                                  // 密码放入数据库时进行加密
+    │  │  	├─MD5.java                              // 密码放入数据库时进行加密
     │  │  	├─Person.java
     │  │  	└─User.java
     │  ├─dao
@@ -94,8 +94,8 @@ Apache Tomcat/9.0.39
     │     	├─ChangePasswdServlet.java
     │     	├─DeleteServlet.java
     │     	├─DownloadServlet.java
-    │     	├─GetInfoServlet.java                       // web端获得登录信息
-    │     	├─GetLogInfoServlet.java                    // 安卓端获得登录信息
+    │     	├─GetInfoServlet.java                   // web端获得登录信息
+    │     	├─GetLogInfoServlet.java                // 安卓端获得登录信息
     │     	├─LoginServlet.java
     │     	├─ModifyInfoServlet.java
     │     	└─RegisterServlet.java
