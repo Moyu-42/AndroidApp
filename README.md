@@ -33,7 +33,7 @@ Apache Tomcat/9.0.39
 │  │  ├─.settings
 │  │  ├─build
 │  │  ├─libs
-│  │  ├─release										// 打包生成的apk文件
+│  │  ├─release                                         // 打包生成的apk文件
 │  │  │   ├─Moyu's World.apk
 │  │  │   └─output-metadata.json
 │  │  └─src
@@ -43,23 +43,23 @@ Apache Tomcat/9.0.39
 │  │      │  ├─java
 │  │      │  │  └─com
 │  │      │  │      └─moyu
-│  │      │  │          └─exp4_android				// android的activity
-│  │      │  │             ├─ChangePassword.java	// 用户页修改密码
-│  │      │  │             ├─ForgetPassword.java	// 登录页忘记密码
-│  │      │  │             ├─Loginfo.java			// 登陆成功后用户页信息
-│  │      │  │             ├─MainActivity.java		// 登录页（主界面）
-│  │      │  │             ├─Modify.java			// 用户页修改信息
-│  │      │  │             └─Register.java			// 注册
+│  │      │  │          └─exp4_android                  // android的activity
+│  │      │  │             ├─ChangePassword.java        // 用户页修改密码
+│  │      │  │             ├─ForgetPassword.java        // 登录页忘记密码
+│  │      │  │             ├─Loginfo.java               // 登陆成功后用户页信息
+│  │      │  │             ├─MainActivity.java          // 登录页（主界面）
+│  │      │  │             ├─Modify.java                // 用户页修改信息
+│  │      │  │             └─Register.java              // 注册
 │  │      │  └─res
 │  │      │      ├─drawable
 │  │      │      ├─drawable-v24
 │  │      │      ├─layout
-│  │      │      │		├─activity_login.xml		// 主界面
-│  │      │      │  	├─changepassword.xml		// 修改密码
-│  │      │      │  	├─forgetpassword.xml		// 忘记密码
-│  │      │      │      ├─loginfo.xml				// 登录信息
-│  │      │      │      ├─modify.xml				// 修改信息
-│  │      │      │  	└─register.xml				// 注册
+│  │      │      │      ├─activity_login.xml            // 主界面
+│  │      │      │  	├─changepassword.xml            // 修改密码
+│  │      │      │  	├─forgetpassword.xml            // 忘记密码
+│  │      │      │      ├─loginfo.xml                   // 登录信息
+│  │      │      │      ├─modify.xml                    // 修改信息
+│  │      │      │  	└─register.xml                  // 注册
 │  │      │      ├─mipmap-anydpi-v26
 │  │      │      ├─mipmap-hdpi
 │  │      │      ├─mipmap-mdpi
@@ -81,7 +81,7 @@ Apache Tomcat/9.0.39
     ├─src
     │  ├─bean
     │  │  	├─Database.java
-    │  │  	├─MD5.java									// 密码放入数据库时进行加密
+    │  │  	├─MD5.java                                  // 密码放入数据库时进行加密
     │  │  	├─Person.java
     │  │  	└─User.java
     │  ├─dao
@@ -94,8 +94,8 @@ Apache Tomcat/9.0.39
     │     	├─ChangePasswdServlet.java
     │     	├─DeleteServlet.java
     │     	├─DownloadServlet.java
-    │     	├─GetInfoServlet.java						// web端获得登录信息
-    │     	├─GetLogInfoServlet.java					// 安卓端获得登录信息
+    │     	├─GetInfoServlet.java                       // web端获得登录信息
+    │     	├─GetLogInfoServlet.java                    // 安卓端获得登录信息
     │     	├─LoginServlet.java
     │     	├─ModifyInfoServlet.java
     │     	└─RegisterServlet.java
